@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\FormSettingController;
+use App\Http\Controllers\Api\V1\OptionController;
+use App\Http\Controllers\Api\V1\QuestionController;
+use App\Http\Controllers\Api\V1\SurveyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +25,9 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('auth:sanctum')->group( function () {
         Route::resource('form-settings', FormSettingController::class);
+        Route::resource('surveys', SurveyController::class);
+        Route::resource('questions', QuestionController::class);
+        Route::resource('options', OptionController::class);
     });
 });
 
