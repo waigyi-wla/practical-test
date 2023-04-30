@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\FormSettingController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,8 +19,10 @@ use App\Http\Controllers\Api\V1\AuthController;
 Route::prefix('v1')->group(function () {
     Route::post('login', [AuthController::class, 'signin']);
     Route::post('register', [AuthController::class, 'signup']);
+
+    Route::middleware('auth:sanctum')->group( function () {
+        Route::resource('form-settings', FormSettingController::class);
+    });
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
